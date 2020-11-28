@@ -1,5 +1,7 @@
 
 
+
+
 ################################################
 # AUTHOR:   Fayjie
 # EMAIL:    fayjie92@gmail.com
@@ -24,6 +26,8 @@ TRIG2 = 20
 ECHO2 = 21
 TRIG3 = 23
 ECHO3 = 24
+TRIG4 = 12
+ECHO 4 = 16
 
 
 # Initialize pi gpio module
@@ -33,6 +37,7 @@ pi = pigpio.pi()
 done1 = threading.Event()
 done2 = threading.Event()
 done3 = threading.Event()
+done4 = threading.Event()
 
 
 # High, Low, and Distance Function
@@ -100,6 +105,25 @@ def dist3():
         return 99999
 
 
+def high4(gpio, level, T):
+    global H4 
+    H4 = T
+
+def low4(gpio, level, T):
+    global L4 
+    L4 = T - H4 
+    done4.set()
+
+def dist4():
+    global L4 
+    done4.clear()
+    pi.gpio_trigger(TRIG4, 50, 1)
+    
+    if done4.wait(timeout=5):
+        return L4*0.034/2
+    else:
+        return 99999
+
 
 '''/ 58.0 / 100.0'''
 
@@ -115,6 +139,9 @@ pi.set_mode(ECHO2, pigpio.INPUT)
 pi.set_mode(TRIG3, pigpio.OUTPUT)
 pi.set_mode(ECHO3, pigpio.INPUT)
 
+pi.set_mode(TRIG4, pigpio.OUTPUT)
+pi.set_mode(ECHO4, pigpio.INPUT)
+
 pi.callback(ECHO1, pigpio.RISING_EDGE, high1)
 pi.callback(ECHO1, pigpio.FALLING_EDGE, low1)
 
@@ -123,6 +150,9 @@ pi.callback(ECHO2, pigpio.FALLING_EDGE, low2)
 
 pi.callback(ECHO3, pigpio.RISING_EDGE, high3)
 pi.callback(ECHO3, pigpio.FALLING_EDGE, low3)
+
+pi.callback(ECHO4, pigpio.RISING_EDGE, high4)
+pi.callback(ECHO4, pigpio.FALLING_EDGE, low4)
 
 
  	
@@ -140,6 +170,8 @@ history2 = collections.deque(maxlen=10)
 
 history3 = collections.deque(maxlen=10)
 
+history4 = collections.deque(maxlen=10)
+
 def filtered_dist1():
     #history1.append(dist1())
     #return np.median(history1)
@@ -155,6 +187,10 @@ def filtered_dist3():
     #return np.median(history3)
     return (dist3())
 
+def filtered_dist4():
+    #history3.append(dist3())
+    #return np.median(history3)
+    return (dist4())
 
 
 
@@ -203,12 +239,32 @@ while True:
                 f = open("temp/us3.rob", "w")
                 f.write(" ")
                 f.close()
-            if os.path.isfile("temp/for.rob"):
-                os.remove("temp/for.rob")
+            if os.path.isfile("temp/back.rob"):
+                os.remove("temp/back.rob")
         else:
             if os.path.isfile("temp/us3.rob"):
                 os.remove("temp/us3.rob")
-            
+    
+    
+    p4 = filtered_dist4()
+    if(p4<1000):
+        print(p4)
+        if (p4<200):
+            if os.path.isfile("temp/us4.rob"):
+                pass
+            else:
+                f = open("temp/us4.rob", "w")
+                f.write(" ")
+                f.close()
+            if os.path.isfile("temp/back.rob"):
+                os.remove("temp/back.rob")
+        else:
+            if os.path.isfile("temp/us4.rob"):
+                os.remove("temp/us3.rob")
+
+
+
+
 
 
 

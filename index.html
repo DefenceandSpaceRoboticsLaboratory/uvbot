@@ -45,6 +45,17 @@
 	function dumpData(data){
 		//DO nothing for now 
 	}
+	function checkRad(){
+		var checkbox = document.getElementById('fluency');
+  		if (checkbox.checked != true)
+  		{
+    			
+                        CallControl('uvoff.php', dumpData);
+  		}
+		else{
+			CallControl('uv.php', dumpData);
+		}
+	}
 </script> 
 
 
@@ -80,11 +91,11 @@
 				
 				<div class="row">
 					<div class="col col-lg-3">
-						<div class="row" style="margin-left: 0.5em">							
+						<div class="row">							
 							<div class="switch demo3">
 								Radiation:
 								<!--RADIATION BUTTON-->	
-								<input type="checkbox" unchecked>
+								<input type="checkbox" onclick="checkRad()" unchecked>
 								<label><i></i></label>
 							</div>
 						</div>
@@ -100,10 +111,10 @@
 						<div class="row" style="margin-left: 2.5em">			
 							<!--<div class="row" id="Hdet"> <button class="btn  btn-dark c5"> !HUMAN DETECTED </button> </div>
 							<div class="row" id="Odet"> <button class="btn  btn-dark c6"> OBJECT DETECTED </button> </div>-->
-							<div class="button button-1">Object Detected</div>
+							<div class="button button-1"  id="Odet">Object Detected</div>
 						</div>
 						<div class="row" style="margin-left: 2.5em">			
-							<div class="button button-4">Human Detected</div>
+							<div class="button button-4"  id="Hdet">Human Detected</div>
 						</div>
 					</div>
 
@@ -112,7 +123,7 @@
 						<div class="">
 							<div class="embed-responsive embed-responsive-4by3 ">
 								<!--<iframe class="embed-responsive-iteam responsive-iframe" src="http://192.168.43.225:5000"></iframe>-->
-								<iframe class="embed-responsive-iteam responsive-iframe" src="https://youtu.be/-cviQ4gBDvk"></iframe>
+								<iframe class="embed-responsive-iteam responsive-iframe" src="http://192.168.43.225:5000"></iframe>
 							</div>
 						</div>
 						<!--VIDEO SECTION ENDS-->
@@ -221,3 +232,4 @@
 
 </body>
 </html>
+ss

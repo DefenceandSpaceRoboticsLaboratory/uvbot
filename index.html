@@ -32,31 +32,6 @@
 </head>
   
 
-<script>
-	function CallControl(theUrl, callback){
-		var xmlHttp = new XMLHttpRequest();
-		xmlHttp.onreadystatechange = function() { 
-       	if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-           	callback(xmlHttp.responseText);
-   		}
-		xmlHttp.open("GET", theUrl, true); // true for asynchronous 
-   		xmlHttp.send(null);
-	}
-	function dumpData(data){
-		//DO nothing for now 
-	}
-	function checkRad(){
-		var checkbox = document.getElementById('fluency');
-  		if (checkbox.checked != true)
-  		{
-    			
-                        CallControl('uvoff.php', dumpData);
-  		}
-		else{
-			CallControl('uv.php', dumpData);
-		}
-	}
-</script> 
 
 
 
@@ -198,6 +173,30 @@
 	</section>
 
 	<script>
+	function CallControl(theUrl, callback){
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.onreadystatechange = function() { 
+       	if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+           	callback(xmlHttp.responseText);
+   		}
+		xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+   		xmlHttp.send(null);
+	}
+	function dumpData(data){
+		//DO nothing for now 
+	}
+	function checkRad(){
+		var checkbox = document.getElementById('fluency');
+  		if (checkbox.checked != true)
+  		{
+    			
+                        CallControl('uvoff.php', dumpData);
+  		}
+		else{
+			CallControl('uv.php', dumpData);
+		}
+	}
+
 		var xx = document.getElementById("Odet");
 		xx.style.display = "non";
 		var yy = document.getElementById("Hdet");
@@ -232,4 +231,3 @@
 
 </body>
 </html>
-ss

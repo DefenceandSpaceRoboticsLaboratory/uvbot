@@ -70,7 +70,7 @@
 							<div class="switch demo3">
 								Radiation:
 								<!--RADIATION BUTTON-->	
-								<input type="checkbox" onclick="checkRad()" unchecked>
+								<input type="checkbox" id="cb1" onclick="checkRad()" unchecked>
 								<label><i></i></label>
 							</div>
 						</div>
@@ -186,10 +186,9 @@
 		//DO nothing for now 
 	}
 	function checkRad(){
-		var checkbox = document.getElementById('fluency');
+		var checkbox = document.getElementById("cb1");
   		if (checkbox.checked != true)
-  		{
-    			
+  		{    			
                         CallControl('uvoff.php', dumpData);
   		}
 		else{
@@ -231,3 +230,4 @@
 
 </body>
 </html>
+sss

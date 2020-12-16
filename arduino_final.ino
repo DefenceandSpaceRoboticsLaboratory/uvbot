@@ -20,7 +20,7 @@ int speed2 = 0;
 int inc = 5;
 
 //------------I2C Function----------
-void receiveData(char b,char a)
+void receiveData(char b,char a,char c)
 {
   {   {
           speed1=(int)(a- '0')*25;
@@ -46,14 +46,15 @@ void receiveData(char b,char a)
           else if (b=='4'){
                 right();
           }
-          else if (b = '5'){
+          if ( c= '1'){
               uvon();
           }
-          else if (b = '6'){
+          else if (c = '0'){
             uvoff();
           }
           else{
-              stop();
+            stop();
+            uvoff();
           }
       }
   }
@@ -100,10 +101,10 @@ void backward(){
     updatespeed();
     digitalWrite(en1,HIGH);
     digitalWrite(en2,HIGH);
-    digitalWrite(in1,HIGH);
+    digitalWrite(in2,HIGH);
     digitalWrite(in2,LOW);
-    digitalWrite(in3,HIGH);
-    digitalWrite(in4,LOW);
+    digitalWrite(in4,HIGH);
+    digitalWrite(in3,LOW);
     digitalWrite(red,HIGH);
     digitalWrite(green,LOW);
     Serial.println("backward");
@@ -114,8 +115,8 @@ void left(){
     digitalWrite(en2,HIGH);
     digitalWrite(in1,HIGH);
     digitalWrite(in2,LOW);
-    digitalWrite(in3,HIGH);
-    digitalWrite(in4,LOW);
+    digitalWrite(in4,HIGH);
+    digitalWrite(in3,LOW);
     digitalWrite(red,HIGH);
     digitalWrite(green,LOW);
     Serial.println("left");
@@ -124,8 +125,8 @@ void right(){
     updatespeed();
     digitalWrite(en1,HIGH);
     digitalWrite(en2,HIGH);
-    digitalWrite(in1,HIGH);
-    digitalWrite(in2,LOW);
+    digitalWrite(in2,HIGH);
+    digitalWrite(in1,LOW);
     digitalWrite(in3,HIGH);
     digitalWrite(in4,LOW);
     digitalWrite(red,HIGH);
@@ -158,22 +159,26 @@ void uvon(){
   digitalWrite(uv1,HIGH);
   digitalWrite(uv2,HIGH);
   digitalWrite(red,HIGH);
+  digitalWrite(green,LOW);
 }
 void uvoff(){
   digitalWrite(uv1,LOW);
   digitalWrite(uv2,LOW);
   digitalWrite(red,LOW);
+  digitalWrite(green,HIGH);
 }
 void loop() {
    
     while(Serial.available() > 0 ){
         String str = Serial.readString();
-        if(str.length()> 1){
-            receiveData(str.charAt(0),str.charAt(1));
+        if(str.length()> 3){
+            receiveData(str.charAt(0),str.charAt(1),str.charAt(2));
             Serial.print("data received##");
             Serial.print(str.charAt(0));
             Serial.print("##");
             Serial.print(str.charAt(1));
+            Serial.print("##");
+            Serial.print(str.charAt(2));
             Serial.println("##");
             
 

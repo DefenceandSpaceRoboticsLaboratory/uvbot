@@ -86,10 +86,10 @@ def uv_off():
 while True:
     path=root+"temp/for.rob"
     if os.path.isfile(path):
-        for i in range(10):
+        for i in range(5):
             if (os.path.isfile(path)) and (not os.path.isfile("temp/us1.rob")) and (not os.path.isfile("temp/us2.rob")) and (not os.path.isfile("temp/us3.rob") and (not os.path.isfile("temp/us4.rob"))):
                 move_forward()
-                time.sleep(5)
+                time.sleep(1)
             else:
                 stop()
                 break                   
@@ -101,10 +101,10 @@ while True:
 
     path=root+"temp/back.rob"
     if os.path.isfile(path):
-        for i in range(10):
+        for i in range(5):
             if os.path.isfile(path):
                 move_backward()
-                time.sleep(5)
+                time.sleep(1)
             else:
                 stop()
                 break                   
@@ -115,10 +115,10 @@ while True:
 
     path=root+"temp/left.rob"
     if os.path.isfile(path):
-        for i in range(10):
+        for i in range(5):
             if os.path.isfile(path):
                 turn_left()
-                time.sleep(5)
+                time.sleep(1)
             else:
                 stop()
                 break                   
@@ -129,10 +129,10 @@ while True:
 
     path=root+"temp/right.rob"
     if os.path.isfile(path):
-        for i in range(10):
+        for i in range(5):
             if os.path.isfile(path):
                 turn_right()
-                time.sleep(5)
+                time.sleep(1)
             else:
                 stop()
                 break                   

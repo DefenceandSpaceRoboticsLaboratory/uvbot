@@ -14,20 +14,18 @@ spd=0
 
 dr=0
 
+uv=0
+
+
 def send2motor():
     speeds=str(spd)[0]
     drs=str(dr)[0]
-    datast=bytes(""+drs+speeds+"\n",'utf-8')
+    uvs=str(uv)[0]
+    datast=bytes(""+drs+speeds+uvs+"\n",'utf-8')
     ser.write(datast)
     print("sent command")
     print(""+drs+speeds+"\n")
 
-def send2uv():
-    drs=str(dr)[0]
-    datast=bytes(""+drs+"\n",'utf-8')
-    ser.write(datast)
-    print("sent command")
-    print(""+drs+"\n")
 
 def speed_inc():    
     global spd
@@ -74,15 +72,15 @@ def move_backward():
     print('motor back')
 
 def uv_on():
-    global dr
-    dr='5'
-    send2uv()
+    global uv
+    uv='1'
+    send2motor()
     print('uv on')
 
 def uv_off():
-    global dr
-    dr='6'
-    send2uv()
+    global uv
+    uv='0'
+    send2motor()
     print('uv off')
 
 while True:

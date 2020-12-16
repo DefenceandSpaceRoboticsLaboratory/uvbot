@@ -40,14 +40,8 @@ if __name__ == '__main__':
     try:
         while True:
             p1 = distance(TRIG1,ECHO1)
-            p2 = distance(TRIG2,ECHO2)
-            p3 = distance(TRIG3,ECHO3)
-            p4 = distance(TRIG4,ECHO4)
-            print("p1=",p1)
-            print("p2=",p2)
-            print("p3=",p3)
-            print("p4=",p4)
             if(p1<1000):
+                print("p1=",p1)
                 if (p1<200):
                     if os.path.isfile("temp/us1.rob"):
                         pass
@@ -59,11 +53,12 @@ if __name__ == '__main__':
                         os.remove("temp/for.rob")
                 else:
                     if os.path.isfile("temp/us1.rob"):
-                        os.remove("temp/us1.rob") 
-            else:
-                print("Error in p1")
+                        os.remove("temp/us1.rob")
+                    
 
+            p2 = distance(TRIG2,ECHO2)
             if (p2<1000):
+                print("p2=",p2)
                 if (p2<200):
                     if os.path.isfile("temp/us2.rob"):
                         pass
@@ -76,10 +71,11 @@ if __name__ == '__main__':
                 else:
                     if os.path.isfile("temp/us2.rob"):
                         os.remove("temp/us2.rob")
-            else:
-                print("Error in p2")
                     
+
+            p3= distance(TRIG3,ECHO3)
             if(p3<1000):
+                print("p3=",p3)
                 if (p3<200):
                     if os.path.isfile("temp/us3.rob"):
                         pass
@@ -92,10 +88,11 @@ if __name__ == '__main__':
                 else:
                     if os.path.isfile("temp/us3.rob"):
                         os.remove("temp/us3.rob")
-            else:
-                print("Error in p3")
             
+            
+            p4 = distance(TRIG4,ECHO4)
             if(p4<1000):
+                print("p4=",p4)
                 if (p4<200):
                     if os.path.isfile("temp/us4.rob"):
                         pass
@@ -107,9 +104,7 @@ if __name__ == '__main__':
                         os.remove("temp/back.rob")
                 else:
                     if os.path.isfile("temp/us4.rob"):
-                        os.remove("temp/us4.rob")
-            else:
-                print("Error in p4")
+                        os.remove("temp/us3.rob")
 
 
 

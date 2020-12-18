@@ -95,11 +95,18 @@ void setup() {
     pinMode(uv1,OUTPUT);
     speed1=0;
     speed2=0;
-    updatespeed();
     digitalWrite(green,LOW);
     digitalWrite(red,LOW);
     digitalWrite(uv1,LOW);
     digitalWrite(uv2,LOW);
+    digitalWrite(en1,LOW);
+    digitalWrite(en2,LOW);
+    digitalWrite(in1,LOW);
+    digitalWrite(in2,LOW);
+    digitalWrite(in3,LOW);
+    digitalWrite(in4,LOW);
+    analogWrite(pwm1, 0);
+    analogWrite(pwm2, 0);
 
 }
 

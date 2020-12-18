@@ -20,7 +20,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('indexcam.html')
+    return render_template('index.html')
 
 
 def gen(camera):
